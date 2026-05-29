@@ -48,10 +48,11 @@ RAW_COLUMNS = [
 ]
 RAW_SCHEMA = ", ".join(f"{c} STRING" for c in RAW_COLUMNS)
 
-# Reusable data-quality predicates (SQL strings, used by the errors table and
-# by the Silver expectations so the two stay in lock-step).
+# Reusable data-quality predicates (SQL strings). These are evaluated against
+# the Silver dataset's OUTPUT columns, so they reference `amount` (the final,
+# cast column), not the internal `amount_dbl` working column.
 RULE_VALID_ID = "transaction_id IS NOT NULL AND trim(transaction_id) <> ''"
-RULE_NON_NEGATIVE = "amount_dbl IS NULL OR amount_dbl >= 0"
+RULE_NON_NEGATIVE = "amount IS NULL OR amount >= 0"
 
 
 # ---------------------------------------------------------------------------
