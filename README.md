@@ -167,6 +167,18 @@ databricks bundle run dlt_healthecommerce -t dev
 
 ---
 
+## Proof of run (Databricks Free Edition)
+
+Screenshots from an actual run are in [`screenshots/`](screenshots/):
+
+| File | Shows |
+|------|-------|
+| `dlt_pipeline_run.jpg` | The declarative pipeline DAG executing (bronze → silver → gold) |
+| `whole_catalog.jpg` | The resulting Unity Catalog tables |
+| `repo_folder.jpg` | The repo cloned as a Databricks Git folder |
+
+---
+
 ## Run / test locally (optional, no Databricks)
 
 Requires Python 3.9+ and a Java runtime (for Spark).
