@@ -132,6 +132,31 @@ git push origin main
 
 ---
 
+## Orchestrate as a scheduled Job (Databricks Asset Bundle)
+
+[`databricks.yml`](databricks.yml) + [`resources/healthecommerce.job.yml`](resources/healthecommerce.job.yml)
+define a Job that runs the notebook pipeline as an explicit medallion **DAG**:
+
+```
+setup ──> bronze ──> silver ──> gold
+```
+
+It is parameterized (`catalog` / `schema` / `volume`), runs on serverless, and
+retries each step (safe because every step is idempotent).
+
+```bash
+# Edit databricks.yml -> set your workspace host first
+databricks bundle validate -t dev
+databricks bundle deploy   -t dev
+databricks bundle run orchestrate_healthecommerce -t dev
+```
+
+> The notebook paths use `${workspace.current_user.userName}` and assume the Git
+> folder is cloned at `/Workspace/Users/<you>/healthecommerce-task`. For a
+> simpler single-step job, point one task at `notebooks/pyspark/99_run_all`.
+
+---
+
 ## Run / test locally (optional, no Databricks)
 
 Requires Python 3.9+ and a Java runtime (for Spark).

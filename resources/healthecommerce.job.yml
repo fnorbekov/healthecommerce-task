@@ -1,0 +1,99 @@
+# Orchestration for the PySpark-notebook medallion pipeline.
+#
+# The job runs the medallion as an explicit DAG so the dependencies are visible:
+#
+#     setup ──> bronze ──> silver ──> gold
+#
+# All notebooks are parameterized (catalog / schema / volume) and every step is
+# idempotent, so the per-task retries below are safe to re-run.
+resources:
+  jobs:
+    orchestrate_healthecommerce:
+      name: orchestrate_healthecommerce
+      tags:
+        project: health-ecommerce
+        layer: medallion
+        approach: pyspark-notebooks
+
+      # The pipeline is idempotent, so a single concurrent run is all we want
+      # (avoids two runs racing on the same Delta tables).
+      max_concurrent_runs: 1
+      timeout_seconds: 3600
+
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
+
+      # Job-level parameters -> passed into each notebook's widgets.
+      parameters:
+        - name: catalog
+          default: workspace
+        - name: schema
+          default: health_ecommerce
+        - name: volume
+          default: raw
+
+      environments:
+        - environment_key: Default
+          spec:
+            environment_version: "5"
+
+      tasks:
+        # 1) Create schema + volume and land the sample data.
+        - task_key: setup
+          notebook_task:
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/healthecommerce-task/notebooks/pyspark/00_setup
+            source: WORKSPACE
+            base_parameters:
+              catalog: "{{job.parameters.catalog}}"
+              schema: "{{job.parameters.schema}}"
+              volume: "{{job.parameters.volume}}"
+          environment_key: Default
+
+        # 2) Bronze — raw ingestion (overwrite snapshot).
+        - task_key: bronze
+          depends_on:
+            - task_key: setup
+          notebook_task:
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/healthecommerce-task/notebooks/pyspark/01_bronze
+            source: WORKSPACE
+            base_parameters:
+              catalog: "{{job.parameters.catalog}}"
+              schema: "{{job.parameters.schema}}"
+              volume: "{{job.parameters.volume}}"
+          environment_key: Default
+          max_retries: 2
+          min_retry_interval_millis: 30000
+          retry_on_timeout: true
+
+        # 3) Silver — logic gate -> errors, cleanse, dedup, MERGE upsert.
+        - task_key: silver
+          depends_on:
+            - task_key: bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/healthecommerce-task/notebooks/pyspark/02_silver
+            source: WORKSPACE
+            base_parameters:
+              catalog: "{{job.parameters.catalog}}"
+              schema: "{{job.parameters.schema}}"
+              volume: "{{job.parameters.volume}}"
+          environment_key: Default
+          max_retries: 2
+          min_retry_interval_millis: 30000
+          retry_on_timeout: true
+
+        # 4) Gold — revenue per category + units per region (overwrite).
+        - task_key: gold
+          depends_on:
+            - task_key: silver
+          notebook_task:
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/healthecommerce-task/notebooks/pyspark/03_gold
+            source: WORKSPACE
+            base_parameters:
+              catalog: "{{job.parameters.catalog}}"
+              schema: "{{job.parameters.schema}}"
+              volume: "{{job.parameters.volume}}"
+          environment_key: Default
+          max_retries: 2
+          min_retry_interval_millis: 30000
+          retry_on_timeout: true

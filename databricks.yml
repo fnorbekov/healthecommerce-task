@@ -1,0 +1,17 @@
+# Databricks Asset Bundle root.
+# Deploy with:  databricks bundle deploy -t dev
+# Run with:     databricks bundle run orchestrate_healthecommerce -t dev
+bundle:
+  name: healthecommerce-task
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    # Replace with your Free Edition workspace URL, e.g.
+    # https://dbc-xxxxxxxx-xxxx.cloud.databricks.com
+    workspace:
+      host: https://CHANGE-ME.cloud.databricks.com
