@@ -1,0 +1,6 @@
+# For LOCAL execution / testing only.
+# On Databricks (Free Edition serverless) PySpark and Delta are pre-installed —
+# you do NOT need this file there.
+pyspark==3.5.1
+delta-spark==3.2.0
+pytest==8.2.0

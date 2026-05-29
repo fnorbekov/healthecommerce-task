@@ -1,0 +1,36 @@
+[
+  { "transaction_id": "T-1001", "timestamp": "2026-05-01T10:15:30Z",        "customer_id": 5001, "region": "North America", "amount": 49.99,  "quantity": 2, "category": "Vitamins",    "status": "completed" },
+  { "transaction_id": "T-1002", "timestamp": "2026-05-01T11:00:00+00:00",   "customer_id": 5002, "region": "Europe",        "amount": 19.50,  "quantity": 1, "category": "First Aid",   "status": "completed" },
+  { "transaction_id": "T-1003", "timestamp": "2026-05-02T09:30:00Z",        "customer_id": 5003, "region": "Asia Pacific",  "amount": 35.00,  "quantity": 3, "category": "Pain Relief", "status": "pending"   },
+  { "transaction_id": "T-1004", "timestamp": "2026-05-02T14:20:00+00:00",   "customer_id": 5004, "region": "North America", "amount": 75.25,  "quantity": 1, "category": "Skin Care",   "status": "completed" },
+  { "transaction_id": "T-1005", "timestamp": "2026-05-03T09:05:12.123Z",    "customer_id": 5005, "region": "Latin America", "amount": 120.00, "quantity": 2, "category": "Diagnostics", "status": "completed" },
+  { "transaction_id": "T-1006", "timestamp": "2026-05-03T16:45:00Z",        "customer_id": 5006, "region": "Europe",        "amount": 29.99,  "quantity": 5, "category": "Vitamins",    "status": "completed" },
+  { "transaction_id": "T-1007", "timestamp": "2026-05-04T08:10:00Z",        "customer_id": 5007, "region": "Asia Pacific",  "amount": 12.75,  "quantity": 4, "category": "First Aid",   "status": "cancelled" },
+  { "transaction_id": "T-1008", "timestamp": "2026-05-04T18:45:00-05:00",   "customer_id": 5008, "region": "North America", "amount": 45.50,  "quantity": 2, "category": "Pain Relief", "status": "completed" },
+  { "transaction_id": "T-1009", "timestamp": "2026-05-05T10:00:00Z",        "customer_id": 5009, "region": "Latin America", "amount": 60.00,  "quantity": 1, "category": "Skin Care",   "status": "pending"   },
+  { "transaction_id": "T-1010", "timestamp": "2026-05-05T13:30:00Z",        "customer_id": 5010, "region": "Europe",        "amount": 99.99,  "quantity": 1, "category": "Diagnostics", "status": "completed" },
+  { "transaction_id": "T-1011", "timestamp": "2026-05-06T07:25:00Z",        "customer_id": 5011, "region": "North America", "amount": 22.00,  "quantity": 3, "category": "Vitamins",    "status": "completed" },
+  { "transaction_id": "T-1012", "timestamp": "2026-05-06T19:00:00Z",        "customer_id": 5012, "region": "Asia Pacific",  "amount": 54.40,  "quantity": 2, "category": "Skin Care",   "status": "completed" },
+  { "transaction_id": "T-1013", "timestamp": "2026-05-07T11:11:11Z",        "customer_id": 5013, "region": "Europe",        "amount": 38.20,  "quantity": 2, "category": "Pain Relief", "status": "completed" },
+  { "transaction_id": "T-1014", "timestamp": "2026-05-07T15:45:30Z",        "customer_id": 5014, "region": "Latin America", "amount": 27.30,  "quantity": 4, "category": "Vitamins",    "status": "completed" },
+  { "transaction_id": "T-1015", "timestamp": "2026-05-08T09:00:00Z",        "customer_id": 5015, "region": "North America", "amount": 15.99,  "quantity": 6, "category": "First Aid",   "status": "completed" },
+  { "transaction_id": "T-1016", "timestamp": "2026-05-08T12:30:00Z",        "customer_id": 5016, "region": "Asia Pacific",  "amount": 150.00, "quantity": 1, "category": "Diagnostics", "status": "pending"   },
+  { "transaction_id": "T-1017", "timestamp": "2026-05-09T14:00:00Z",        "customer_id": 5017, "region": "Europe",        "amount": 80.00,  "quantity": 2, "category": "Skin Care",   "status": "completed" },
+  { "transaction_id": "T-1018", "timestamp": "2026-05-09T17:20:00Z",        "customer_id": 5018, "region": "North America", "amount": 110.50, "quantity": 1, "category": "Diagnostics", "status": "completed" },
+  { "transaction_id": "T-1019", "timestamp": "2026-05-10T08:45:00Z",        "customer_id": 5019, "region": "Latin America", "amount": 33.33,  "quantity": 3, "category": "Pain Relief", "status": "completed" },
+  { "transaction_id": "T-1020", "timestamp": "2026-05-10T10:30:00Z",        "customer_id": 5020, "region": "Asia Pacific",  "amount": 25.00,  "quantity": 2, "category": "Vitamins",    "status": "completed" },
+
+  { "transaction_id": "T-1001", "timestamp": "2026-05-11T10:15:30Z",        "customer_id": 5001, "region": "North America", "amount": 49.99,  "quantity": 2, "category": "Vitamins",    "status": "completed" },
+  { "transaction_id": "T-1005", "timestamp": "2026-05-11T09:05:12Z",        "customer_id": 5005, "region": "Latin America", "amount": 120.00, "quantity": 2, "category": "Diagnostics", "status": "completed" },
+
+  { "transaction_id": null,     "timestamp": "2026-05-12T09:00:00Z",        "customer_id": 5023, "region": "Europe",        "amount": 18.00,  "quantity": 2, "category": "First Aid",   "status": "completed" },
+  { "transaction_id": "",       "timestamp": "2026-05-12T10:00:00Z",        "customer_id": 5024, "region": "North America", "amount": 40.00,  "quantity": 1, "category": "Skin Care",   "status": "completed" },
+
+  { "transaction_id": "T-1023", "timestamp": "2026-05-13T08:00:00Z",        "customer_id": 5025, "region": "Asia Pacific",  "amount": -30.00, "quantity": 2, "category": "Pain Relief", "status": "completed" },
+  { "transaction_id": "T-1024", "timestamp": "2026-05-13T09:30:00Z",        "customer_id": 5026, "region": "Europe",        "amount": -15.50, "quantity": 1, "category": "Vitamins",    "status": "completed" },
+
+  { "transaction_id": "T-1025", "timestamp": "2026-05-14T11:00:00Z",        "customer_id": 5027, "region": "North America", "amount": 21.49,  "quantity": 3, "category": "First Aid",   "status": "completed" },
+  { "transaction_id": "T-1026", "timestamp": "2026-05-14T13:15:00Z",        "customer_id": 5028, "region": "Latin America", "amount": 130.00, "quantity": 1, "category": "Diagnostics", "status": "pending"   },
+  { "transaction_id": "T-1027", "timestamp": "2026-05-15T16:40:00Z",        "customer_id": 5029, "region": "Asia Pacific",  "amount": 58.90,  "quantity": 2, "category": "Skin Care",   "status": "completed" },
+  { "transaction_id": "T-1028", "timestamp": "2026-05-15T18:05:00Z",        "customer_id": 5030, "region": "Europe",        "amount": 41.10,  "quantity": 2, "category": "Pain Relief", "status": "completed" }
+]
