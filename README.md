@@ -176,6 +176,8 @@ Screenshots from an actual run are in [`screenshots/`](screenshots/):
 | `dlt_pipeline_run.jpg` | The declarative pipeline DAG executing (bronze → silver → gold) |
 | `whole_catalog.jpg` | The resulting Unity Catalog tables |
 | `repo_folder.jpg` | The repo cloned as a Databricks Git folder |
+| `gold_revenue_notebook_way.jpg` | Gold revenue-by-category output — PySpark notebook approach |
+| `gold_revenue_dlt_way.jpg` | Gold revenue-by-category output — declarative (DLT) approach |
 
 ---
 
