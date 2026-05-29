@@ -155,6 +155,16 @@ databricks bundle run orchestrate_healthecommerce -t dev
 > folder is cloned at `/Workspace/Users/<you>/healthecommerce-task`. For a
 > simpler single-step job, point one task at `notebooks/pyspark/99_run_all`.
 
+The declarative pipeline is also defined as bundle resource
+[`resources/healthecommerce.pipeline.yml`](resources/healthecommerce.pipeline.yml)
+(serverless, target schema `health_ecommerce_dlt`). After running
+`declarative_pipeline/00_landing_setup.py` once:
+
+```bash
+databricks bundle deploy -t dev
+databricks bundle run dlt_healthecommerce -t dev
+```
+
 ---
 
 ## Run / test locally (optional, no Databricks)

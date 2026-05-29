@@ -1,0 +1,26 @@
+# Lakeflow Declarative Pipeline (DLT) for the same medallion architecture.
+#
+# Prerequisite: run declarative_pipeline/00_landing_setup.py once so the raw
+# Volume + sample file exist (the pipeline only DEFINES tables, it cannot copy
+# files). The pipeline reads from `hec.raw_path` below.
+#
+# Tables land in `workspace.health_ecommerce_dlt` — a SEPARATE schema from the
+# notebook approach, so the two implementations never collide.
+resources:
+  pipelines:
+    dlt_healthecommerce:
+      name: dlt_healthecommerce
+      catalog: workspace
+      schema: health_ecommerce_dlt
+      serverless: true          # serverless implies Photon; no `photon:` needed
+      continuous: false         # batch / triggered run
+      channel: CURRENT
+
+      libraries:
+        - glob:
+            include: /Workspace/Users/${workspace.current_user.userName}/healthecommerce-task/declarative_pipeline/hec_dlt_pipeline.py
+
+      # Explicit raw landing path (read by the pipeline source via spark.conf).
+      # Points at the shared volume created by 00_landing_setup.py.
+      configuration:
+        hec.raw_path: /Volumes/workspace/health_ecommerce/raw/transactions.json
